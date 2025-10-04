@@ -1,0 +1,43 @@
+<html>
+<head>
+<style>
+body{
+    background-color:black;
+}
+.formelt{
+    color:orange;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 6px;
+}
+h1{
+    color:darkred;
+    text-align: center;
+    padding-top: 20px;
+}
+</style>
+</head>
+<body>
+    <h1 style="color:antiquewhite" align="center">Amrita B.S(25018474)</h1>
+<div class="edge">
+<div class="box">
+<h1>Power Calculation (P = I × R²)</h1>
+<form method="POST">
+    {% csrf_token %}
+    <div class="formelt">
+        Current (I): <input type="text" name="current" value="{{I}}">(in Amperes)<br/>
+    </div>
+    <div class="formelt">
+        Resistance (R): <input type="text" name="resistance" value="{{R}}">(in Ohms)<br/>
+    </div>
+    <div class="formelt">
+        <input type="submit" value="Calculate"><br/>
+    </div>
+    <div class="formelt">
+        Power (P): <input type="text" name="power" value="{{power}}">(in Watts)<br/>
+    </div>
+</form>
+</div>
+</div>
+</body>
+</html>
