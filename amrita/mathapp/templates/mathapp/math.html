@@ -1,43 +1,44 @@
-<html>
-<head>
+<html> 
+<head> 
+<title>BMI Calculator</title> 
+</head> 
 <style>
-body{
-    background-color:black;
+
+    body{
+       background-color:rgb(213, 40, 69);
 }
 .formelt{
-    color:orange;
+    color:black;
     text-align: center;
     margin-top: 7px;
     margin-bottom: 6px;
 }
 h1{
-    color:darkred;
+    color:rgb(128, 0, 0);
     text-align: center;
-    padding-top: 20px;
+    padding-top: 20px;
 }
 </style>
-</head>
 <body>
-    <h1 style="color:antiquewhite" align="center">Amrita B.S(25018474)</h1>
-<div class="edge">
-<div class="box">
-<h1>Power Calculation (P = I × R²)</h1>
+<div class="edge"> 
+<div class="box"> 
+<h1>BMI Calculator</h1> 
 <form method="POST">
-    {% csrf_token %}
-    <div class="formelt">
-        Current (I): <input type="text" name="current" value="{{I}}">(in Amperes)<br/>
-    </div>
-    <div class="formelt">
-        Resistance (R): <input type="text" name="resistance" value="{{R}}">(in Ohms)<br/>
-    </div>
-    <div class="formelt">
-        <input type="submit" value="Calculate"><br/>
-    </div>
-    <div class="formelt">
-        Power (P): <input type="text" name="power" value="{{power}}">(in Watts)<br/>
-    </div>
+{% csrf_token %}
+<div class="formelt"> 
+Weight:<input type="text" name="weight" value="{{w}}"></input>(in kg)<br/> 
+</div> 
+<div class="formelt"> 
+Height:<input type="text" name="height" value="{{h}}"></input>(in meters)<br/> 
+</div> 
+<div class="formelt"> 
+<input type="submit" value="Calculate"></input><br/> 
+</div> 
+<div class="formelt"> 
+BMI:<input type="text" name="bmi" value="{{bmi}}"></input>(in kg/m^2)<br/> 
+</div>
 </form>
 </div>
-</div>
+</div> 
 </body>
 </html>

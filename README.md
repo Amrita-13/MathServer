@@ -1,15 +1,15 @@
 # Ex.05 Design a Website for Server Side Processing
-## Date:30.09.2025
+## Date:6.10.2025
 
 ## AIM:
  To design a website to calculate the power of a lamp filament in an incandescent bulb in the server side. 
 
 
 ## FORMULA:
-P = I<sup>2</sup>R
-<br> P --> Power (in watts)
-<br> I --> Intensity
-<br> R --> Resistance
+BMI = W/H<sup>2</sup>
+<br> BMI --> Body Mass Index (in kg/m<sup>2</sup>)
+<br> W --> Weight(in kg)
+<br> H --> Height(in m)
 
 ## DESIGN STEPS:
 
@@ -35,94 +35,103 @@ Publish the website in the given URL.
 ```
 math.html
 
-<html>
-<head>
+<html> 
+<head> 
+<title>BMI Calculator</title> 
+</head> 
 <style>
-body{
-    background-color:black;
+
+    body{
+       background-color:rgb(213, 40, 69);
 }
 .formelt{
-    color:orange;
+    color:black;
     text-align: center;
     margin-top: 7px;
     margin-bottom: 6px;
 }
 h1{
-    color:darkred;
+    color:rgb(128, 0, 0);
     text-align: center;
-    padding-top: 20px;
+    padding-top: 20px;
 }
 </style>
-</head>
 <body>
-    <h1 style="color:antiquewhite" align="center">Amrita B.S(25018474)</h1>
-<div class="edge">
-<div class="box">
-<h1>Power Calculation (P = I × R²)</h1>
+<div class="edge"> 
+<div class="box"> 
+<h1>BMI Calculator</h1> 
 <form method="POST">
-    {% csrf_token %}
-    <div class="formelt">
-        Current (I): <input type="text" name="current" value="{{I}}">(in Amperes)<br/>
-    </div>
-    <div class="formelt">
-        Resistance (R): <input type="text" name="resistance" value="{{R}}">(in Ohms)<br/>
-    </div>
-    <div class="formelt">
-        <input type="submit" value="Calculate"><br/>
-    </div>
-    <div class="formelt">
-        Power (P): <input type="text" name="power" value="{{power}}">(in Watts)<br/>
-    </div>
+{% csrf_token %}
+<div class="formelt"> 
+Weight:<input type="text" name="weight" value="{{w}}"></input>(in kg)<br/> 
+</div> 
+<div class="formelt"> 
+Height:<input type="text" name="height" value="{{h}}"></input>(in meters)<br/> 
+</div> 
+<div class="formelt"> 
+<input type="submit" value="Calculate"></input><br/> 
+</div> 
+<div class="formelt"> 
+BMI:<input type="text" name="bmi" value="{{bmi}}"></input>(in kg/m^2)<br/> 
+</div>
 </form>
 </div>
-</div>
+</div> 
 </body>
 </html>
 
 views.py
-from django.shortcuts import render
+from django.shortcuts import render 
 
-def powercalc(request):
-    context = {}
-    context['power'] = "0"
-    context['I'] = "0"
-    context['R'] = "0"
-
-    if request.method == 'POST':
+def bmi_calculator(request): 
+    context = {} 
+    context['bmi'] = "0" 
+    context['w'] = "0" 
+    context['h'] = "0" 
+    
+    if request.method == 'POST': 
         print("POST method is used")
-        I = request.POST.get('current', '0')
-        R = request.POST.get('resistance', '0')
-
-        print('Current (I) =', I)
-        print('Resistance (R) =', R)
-        power = int(I) * (int(R) ** 2)
-
-        context['power'] = power
-        context['I'] = I
-        context['R'] = R
-
-        print('Power (P) =', power)
-
+        
+        w = request.POST.get('weight', '0')
+        h = request.POST.get('height', '0')
+        
+        print('request=', request) 
+        print('Weight=', w) 
+        print('Height=', h) 
+       
+        try:
+            weight = float(w)
+            height = float(h)
+            bmi = weight / (height ** 2)
+        except ZeroDivisionError:
+            bmi = "Invalid height (cannot be zero)"
+        except ValueError:
+            bmi = "Invalid input (enter numeric values)"
+        
+        context['bmi'] = bmi 
+        context['w'] = w
+        context['h'] = h 
+        print('BMI=', bmi) 
+    
     return render(request, 'mathapp/math.html', context)
 
 urls.py
-from django.contrib import admin
-from django.urls import path
-from mathapp import views
+from django.contrib import admin 
+from django.urls import path 
+from mathapp import views 
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('power/', views.powercalc, name="powercalc"),
-    path('', views.powercalc, name="powercalcroot"),  
+urlpatterns = [ 
+    path('admin/', admin.site.urls), 
+    path('bmicalculator/', views.bmi_calculator, name="bmicalculator"),
+    path('', views.bmi_calculator, name="bmicalculatorroot")
 ]
+
 
 ```
 
 ## SERVER SIDE PROCESSING:
-
-![alt text](<Screenshot 2025-10-04 080437.png>)
+![alt text](image-1.png)
 ## HOMEPAGE:
-![alt text](<Screenshot 2025-10-01 185649.png>)
-
+![alt text](image.png)
 ## RESULT:
 The program for performing server side processing is completed successfully.
