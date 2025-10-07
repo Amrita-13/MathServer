@@ -59,6 +59,7 @@ h1{
 <body>
 <div class="edge"> 
 <div class="box"> 
+<h1>Amrita B.S</h1>
 <h1>BMI Calculator</h1> 
 <form method="POST">
 {% csrf_token %}
@@ -130,8 +131,8 @@ urlpatterns = [
 ```
 
 ## SERVER SIDE PROCESSING:
-![alt text](image-1.png)
+![alt text](image-2.png)
 ## HOMEPAGE:
-![alt text](image.png)
+![alt text](image-3.png)
 ## RESULT:
 The program for performing server side processing is completed successfully.
