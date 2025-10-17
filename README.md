@@ -2,7 +2,7 @@
 ## Date:6.10.2025
 
 ## AIM:
- To design a website to calculate the power of a lamp filament in an incandescent bulb in the server side. 
+ To design a website to calculate the body mass index of a person in the server side. 
 
 
 ## FORMULA:
